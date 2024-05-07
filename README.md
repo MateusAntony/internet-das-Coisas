@@ -18,6 +18,16 @@ Sendo assim, o desafio por parte da nossa empresa é estabelecer uma comunicaç�
 - Adoção de threads para lidar com a comunicação simultânea, utilizando também o Lock para impedir que ocorra uma condição de corrida entre threads, ou seeja, somente uma thread pode acessar um recurso compartilhado por vez.
 - Foi manuseado o framework Flask para o desenvolvimento da API RESTFul
 
+![image](https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/52a65dd7-c5fb-4660-9908-fa236a30048f)
+
+
+## Resultado e Discussões
+
+Com a crescente atenção que o sistema de Internet das Coisas (Internet of Things, IoT) tem recebido por parte das instituições acadêmicas e empresas, devido à variedade de áreas que podem ser alcançadas por tal tecnologia, surge a necessidade de desenvolver middleware distribuídos e aplicá-los de forma eficiente. Nesse sentido, muitas empresas se deparam com o desafio da elaboração da comunicação entre seus dispositivos e suas diferentes aplicações. 
+
+
+
+
 
 ## Como Usar
 
