@@ -1,0 +1,14 @@
+# Use a imagem base do Python
+FROM python:3.9-slim
+
+# Defina o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+RUN pip install requests
+
+
+# Copie o arquivo do Client para o diretório de trabalho
+COPY client.py .
+
+# Comando para iniciar o Client
+CMD ["python", "client.py"]

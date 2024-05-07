@@ -17,32 +17,44 @@ class ElectricFenceDevice:
 
     def connect_broker(self):
         # Método para conectar ao broker
-        try:
-            self.socket.connect((self.broker_host, self.broker_port))  # Conexão ao broker
-            self.connected = True  # Define o estado de conexão como True
-            print(f"Conectado no broker: {self.broker_host}:{self.broker_port}")
-        except socket.error as e:
-            print(f'Erro ao conectar no broker: {e}')
+        while not self.connected:
+            try:
+                self.socket.connect((self.broker_host, self.broker_port))  # Conexão ao broker
+                self.connected = True  # Define o estado de conexão como True
+                print(f"Conectado no broker: {self.broker_host}:{self.broker_port}")
+            except socket.error as e:
+                print("Erro ao se conectar ao broker! Tentando novamente...")
+                time.sleep(5)
 
     def start(self):
         # Método para iniciar o dispositivo
         if not self.connected:
             self.connect_broker()  # Conecta ao broker, se ainda não estiver conectado
         if self.connected:
-            self.running = True  # Define o estado de operação como True
+            self.running = False  # Define o estado de operação como True
             threading.Thread(target=self.receive_commands).start()  # Inicia uma thread para receber comandos do broker
-            
-    def send_broker(self,data):
-    # Método para enviar dados simulados ao broker (UDP)
-        if self.running:
-            try:
-                message = ",".join(data)  # Concatenando os elementos da lista em uma única string
-                print(f"Mensagem enviada ao broker: {message}")
-                self.udp_socket.sendto(message.encode(), (self.broker_host, self.broker_port))  # Envio dos dados ao broker
-            except socket.error as e:
-                print(f"Erro ao enviar dados! {e}")
+            threading.Thread(target=self.send_data_periodically).start()  # Inicia uma thread para enviar dados periodicamente
+
+    def send_broker(self, data):
+        # Método para enviar dados simulados ao broker (UDP)
+        try:
+            message = ",".join(data)  # Concatenando os elementos da lista em uma única string
+            print(f"Mensagem enviada ao broker: {message}")
+            self.udp_socket.sendto(message.encode(), (self.broker_host, self.broker_port))
             time.sleep(5)
-            
+              # Envio dos dados ao broker
+        except socket.error as e:
+            print(f"Erro ao enviar dados! {e}")
+
+    def send_data_periodically(self):
+        # Loop para enviar dados periodicamente
+        while True:
+            with self.lock:
+                if self.running:
+                    self.voltage = random.randint(200, 300)
+                    data = [f'Voltagem:{self.voltage}V', str(self.running)]
+                    self.send_broker(data)
+            time.sleep(5) 
             
     def receive_commands(self):
     # Método para receber comandos do broker
@@ -53,7 +65,10 @@ class ElectricFenceDevice:
                 if command:
                     self.handle_command(command)  # Chama o método para lidar com o comando recebido
             except socket.error as e:
-                print(f"Erro ao receber o comando! {e}")
+                print("Erro ao se conectar ao broker! Tentando novamente...")
+                time.sleep(5)
+                self.connected = False  # Define o estado de conexão como False
+                self.connect_broker() 
 
     def handle_command(self, command):
         # Método para lidar com os comandos recebidos do broker
@@ -71,6 +86,14 @@ class ElectricFenceDevice:
                     data=[str(self.running)]
                     self.send_broker(data)
                     print("Cerca elétrica desligada")
+                elif command == "RESTART":
+                    print(f"Comando recebido: {command}")
+                    time.sleep(5)  # Simulando o tempo de reinicialização
+                    self.running = False 
+                    self.running = True
+                    print("Dispositivo reiniciado") # Desliga a cerca elétrica após o reinício
+                    data = [f'Voltagem:{self.voltage}V', str(self.running)]
+                    self.send_broker(data)
 
 
 if __name__ == "__main__":
