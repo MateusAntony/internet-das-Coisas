@@ -15,6 +15,8 @@ Sendo assim, o desafio por parte da nossa empresa é estabelecer uma comunicaç�
 - Foi desenvolvido uma ApiRESTfull por meio do serviço broker.
 - Foi realizados testes funcionais e de interação que tem como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada môdulo do projeto, com o propósito de prever possíveis erros e falhas do sistema.
 - Foi feito teste das rotas da Api através do Postman, que permitiu simular solicitações HTTP.
+- Adoção de threads para lidar com a comunicação simultânea, utilizando também o Lock para impedir que ocorra uma condição de corrida entre threads, ou seeja, somente uma thread pode acessar um recurso compartilhado por vez.
+- Foi manuseado o framework Flask para o desenvolvimento da API RESTFul
 
 
 ## Como Usar
