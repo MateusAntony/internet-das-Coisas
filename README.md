@@ -9,6 +9,14 @@ Com a crescente atenção que o sistema de Internet das Coisas (Internet of Thin
   
 Sendo assim, o desafio por parte da nossa empresa é estabelecer uma comunicação plena entre os diversos dispositivos IoT e as suas aplicações, que necessitam dos dados oferecidos por esses dispositivos. A solução para esse problema envolve a criação de um serviço broker, dispositivos virtuais simulados, manipulação e uso de contêineres Docker, e uma Interface de Programação de Aplicação (API) no modelo arquitetural RESTful oferecida pelo broker. Assim, esse projeto propõe apresentar a solução implementando os recursos citados e evidenciando na prática tópicos de concorrência e conectividade. 
 
+## Metodologia
+- Para o envio de dados por parte dos dispositivos foi utilizado um abodagem não confiavel, ou mais especificamente UDP, já para lidar com os comandos recebidos foi usado um abordagem confiável, usando socket nativo TCP/IP, onde garantia a entrega entre o broker e o dispositivo virtual.
+- Foi implementado funcionalidades de controle, como ligar, reiniciar e desligar, para interagir com o dispositivo selecionado., além de possiblidade de visualizar os dados.
+- Foi desenvolvido uma ApiRESTfull por meio do serviço broker.
+- Foi realizados testes funcionais e de interação que tem como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada môdulo do projeto, com o propósito de prever possíveis erros e falhas do sistema.
+- Foi feito teste das rotas da Api através do Postman, que permitiu simular solicitações HTTP.
+
+
 ## Como Usar
 
 Para utilizar este projeto, siga os seguintes passos:
