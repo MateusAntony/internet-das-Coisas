@@ -16,9 +16,12 @@ Foi implementado funcionalidades de controle, como ligar, reiniciar e desligar, 
 
 Houve a adoção de threads para lidar com a comunicação simultânea, utilizando também o Lock para impedir que ocorra uma condição de corrida entre threads, ou seeja, somente uma thread pode acessar um recurso compartilhado por vez. Foi manuseado o framework Flask para o desenvolvimento da API RESTFul
 
-Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades que deve compor o programa para o funcionamente eficiênte
-![image](https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/52a65dd7-c5fb-4660-9908-fa236a30048f)
+Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades que deve compor o programa para o funcionamente eficiênte:
 
+
+<p align="center">
+  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/52a65dd7-c5fb-4660-9908-fa236a30048f" alt="Descrição da Imagem">
+</p>
 
 ## Resultado e Discussões
 
