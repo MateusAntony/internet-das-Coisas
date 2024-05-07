@@ -1,5 +1,6 @@
 # Problema 1: Internet das Coisas
-**Mateus Antony Medeiros Carvalho**
+**Autor**:Mateus Antony Medeiros Carvalho
+
 Departamento de Tecnologia – Universidade Estadual de Feira de Santana (UEFS) 44036–900 – Feira de Santana – Bahia
 
 
