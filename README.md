@@ -33,7 +33,7 @@ Contudo a respeito da confiabilidade, quando tentando tirar ou realocar os cabos
 
 ## Conclusão
 
-Embora não atigindo o resultado que esperava, a abordagem relacionadas a essa problemática permitiu que saissemos do campo teórico percebendo a importancia tanto do uso de alguns protocolos, a implementação de threads, além de nos apresentar conceitos e ferramentas que nunca tinhamos trabalhado. Em suma, esse projeto foi de ampla importancia para o desenvolvimento de desenvolvedores e profissionais na área.
+Embora não atigindo o resultado que esperava, as abordagens relacionadas a essa problemática permitiu que saissemos do campo teórico percebendo a importancia tanto do uso de alguns protocolos, a implementação de threads, além de nos apresentar conceitos e ferramentas que nunca tinhamos trabalhado. Em suma, esse projeto foi de ampla importancia para o desenvolvimento de desenvolvedores e profissionais na área.
 
 ## Como Usar
 
