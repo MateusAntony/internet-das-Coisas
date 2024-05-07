@@ -1,4 +1,6 @@
 # Problema 1: Internet das Coisas
+**Mateus Antony Medeiros Carvalho**
+Departamento de Tecnologia – Universidade Estadual de Feira de Santana (UEFS) 44036–900 – Feira de Santana – Bahia
 
 
 **Resumo:** Uma startup que desenvolve dispositivos, adicionando capacidades de rede aos produtos, ainda não estabeleceu a comunicação entre os dispositivos e suas diversas aplicações. Nesse contexto, foi solicitado o desenvolvimento de um serviço para facilitar essa comunicação. Propusemos um serviço distribuído de comunicação utilizando o protocolo TCP/IP para comandos e uma abordagem não confiável para dados. Foi criado com sucesso um dispositivo virtual simulado para geração de dados fictícios, além de ser disponibilizada uma API RESTful para garantir a eficiente troca de dados e comandos.
