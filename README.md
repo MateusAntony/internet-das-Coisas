@@ -31,7 +31,7 @@ Foi criado um total de 7 rotas, sendo rota de reiniciar,ligar e desligar o dispo
 
 Contudo a respeito da confiabilidade, quando tentando tirar ou realocar os cabos de alguns dos nós o sistema é interrompido, não cumprindo um dos requisitos necessários. Outrossim, a respeito do desempenho embora tenha usado threads,dicionários e filas, o objetivo central não para o autor era cumprir a funcionalidade princípal, ou seja, a comunicação não atentando especificamente para uma melhora no tempo da aplicação.
 
-##Conclusão
+## Conclusão
 
 Embora não atigindo o resultado que esperava, a abordagem relacionadas a essa problemática permitiu que saissemos do campo teórico percebendo a importancia tanto do uso de alguns protocolos, a implementação de threads, além de nos apresentar conceitos e ferramentas que nunca tinhamos trabalhado. Em suma, esse projeto foi de ampla importancia para o desenvolvimento de desenvolvedores e profissionais na área.
 
