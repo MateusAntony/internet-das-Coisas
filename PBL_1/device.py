@@ -2,7 +2,7 @@ import socket
 import time
 import threading
 import random
-
+import os
 class ElectricFenceDevice:
     def __init__(self, broker_host, broker_port):
         # Inicialização do dispositivo de cerca elétrica
@@ -97,7 +97,5 @@ class ElectricFenceDevice:
 
 
 if __name__ == "__main__":
-    device = ElectricFenceDevice('127.0.0.1', 5555)
-    device2 = ElectricFenceDevice( '127.0.0.1', 5555)
+    device = ElectricFenceDevice(os.getenv('ip'), 5555)
     device.start()  # Inicia cada dispositivo
-    device2.start()

@@ -6,9 +6,9 @@ from queue import Queue
 
 # Classe que define o serviço de Broker
 class BrokerService:
-    def __init__(self, host, port):
+    def __init__(self, port):
         # Inicialização da instância do BrokerService
-        self.host = host
+        self.host = socket.gethostbyname(socket.gethostname())
         self.port = port
         self.devices = {}  # Dicionário para rastrear dispositivos conectados
         self.lock = threading.Lock() # Lock para sincronização de threads
@@ -95,7 +95,7 @@ class BrokerService:
 
 # Configuração da aplicação Flask
 app = Flask(__name__)
-broker_inst = BrokerService(host="127.0.0.1", port=5555) # Instância do BrokerService
+broker_inst = BrokerService(port=5555) # Instância do BrokerService
 broker_thread = threading.Thread(target=broker_inst.start) # Thread para iniciar o serviço de Broker
 broker_thread.start() # Inicia a thread
 
@@ -153,4 +153,4 @@ def client_desconectado(client_id):
 
 # Inicia a execução da aplicação Flask
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host= broker_inst.host, port=6000)
