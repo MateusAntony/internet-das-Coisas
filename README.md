@@ -1,4 +1,4 @@
-# Problema 1: Internet das Coisas
+![image](https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/cbee7f8b-3acc-4402-90bc-6535c0d5193d)# Problema 1: Internet das Coisas
 **Autor**:Mateus Antony Medeiros Carvalho
 
 **Departamento de Tecnologia** – Universidade Estadual de Feira de Santana (UEFS) 44036–900 – Feira de Santana – Bahia
@@ -27,7 +27,12 @@ Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades q
 
 ## Resultado e Discussões
 
-Ao testar e finalizar a solução, foi observado que grande parte dos requisitos exigidos foram cumpridos. Houve o desenvolvimento dos componentes, onde o Broker se comunica com o Device e o Client, já o Device só se comunica com o Broker semelhantemente ao Client. Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o Device, e UDP para lidar com os dados que partem do Device e vão até o broker. A comunicação que é feita entre Broker e Client é baseada em HTTP. Foi elaborado funções para tratar os dados específicos, permitindo a compreensão das mensagens.
+Ao testar e finalizar a solução, foi observado que grande parte dos requisitos exigidos foram cumpridos. Houve o desenvolvimento dos componentes, onde o Broker se comunica com o Device e o Client, já o Device só se comunica com o Broker semelhantemente ao Client. 
+
+Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o Device, e UDP para lidar com os dados que partem do Device e vão até o broker. A comunicação que é feita entre Broker e Client é baseada em HTTP. Foi elaborado funções para tratar os dados específicos, permitindo a compreensão das mensagens.
+
+![Texto Alternativo](![image](https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/c15ae798-bce7-4124-beec-854351bd07ed))
+Legenda: Configuração para aceitar conexões TCP.
 
 Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o dispositivo, rota para listagem de dispositivos e rotas para tratar com a conexão e desconexão do cliente. Sendo assim, é possível ligarmos, desligarmos e selecionarmos um dispositivo específico, além da funcionalidade de listagem dos dispositivos. Não houve a elaboração de uma interface gráfica, sendo de preferência do autor realizar as saídas e interagir com o próprio usuário através do próprio terminal.
 
