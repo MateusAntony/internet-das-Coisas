@@ -16,7 +16,26 @@ Para o envio de dados por parte dos dispositivos foi utilizada uma abordagem nã
 
 Foi implementado funcionalidades de controle, como ligar, reiniciar e desligar, para interagir com o dispositivo selecionado, além da possibilidade de visualizar os dados. Foi desenvolvida uma API RESTful por meio do serviço broker. Realizamos testes funcionais e de interação que têm como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada módulo do projeto, com o propósito de prever possíveis erros e falhas do sistema. Foi feito teste das rotas da API através do Postman, que permitiu simular solicitações HTTP.
 
-Houve a adoção de threads para lidar com a comunicação simultânea, utilizando também o Lock para impedir que ocorra uma condição de corrida entre threads, ou seja, somente uma thread pode acessar um recurso compartilhado por vez. Foi manuseado o framework Flask para o desenvolvimento da API RESTful.
+Houve a adoção de threads para lidar com a comunicação simultânea, utilizando também o Lock para impedir que ocorra uma condição de corrida entre threads, ou seja, somente uma thread pode acessar um recurso compartilhado por vez. Foi manuseado o framework Flask para o desenvolvimento da API RESTful. Houve também a utilização de uma fila para conseguir armazenar os dados que eram enviados para o broker.
+
+<p align="center">
+  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/c38372d7-c29f-45ab-b86f-ed453057a0e2" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
+</p>
+
+<p align="center">
+  Imagem 1: Função de utiliza o Lock para sincronização de threads.
+</p>
+
+
+<p align="center">
+  <img src="!https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/d6cde03f-dd4c-434a-bae5-c1ce03fc74c8" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
+</p>
+
+<p align="center">
+  Imagem 2: thread que é utilizada para receber dados do device.
+</p>
+
+
 
 Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades que deve compor o programa para o funcionamente eficiênte:
 
@@ -24,6 +43,8 @@ Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades q
 <p align="center">
   <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/52a65dd7-c5fb-4660-9908-fa236a30048f" alt="Descrição da Imagem">
 </p>
+<p align="center">
+  Imagem 3: Barema avaliativo
 
 ## Resultado e Discussões
 
@@ -37,7 +58,7 @@ Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o 
 </p>
 
 <p align="center">
-  Imagem 1: Configuração para aceitar conexões TCP.
+  Imagem 4: Configuração para aceitar conexões TCP.
 </p>
 
 
@@ -48,7 +69,7 @@ Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o disp
 </p>
 
 <p align="center">
-  Imagem 2: Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.
+  Imagem 5: Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatados para o cliente.
 </p>
 
 
