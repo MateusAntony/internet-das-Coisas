@@ -3,7 +3,7 @@ import json
 import time
 import os
 
-API_URL = "http://"+os.getenv('ip')+":6000" 
+API_URL = "http://"+os.getenv('ip')+":8080" 
 
 # Função para reiniciar um dispositivo específico
 def reiniciar_dispositivo(device_id):

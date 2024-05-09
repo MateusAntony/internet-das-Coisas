@@ -153,4 +153,4 @@ def client_desconectado(client_id):
 
 # Inicia a execução da aplicação Flask
 if __name__ == '__main__':
-    app.run(host= broker_inst.host, port=6000)
+    app.run(host= broker_inst.host, port=8080)
