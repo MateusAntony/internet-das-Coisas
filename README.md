@@ -92,7 +92,16 @@ Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o disp
 
 Não houve a elaboração de uma interface gráfica, sendo de preferência do autor realizar as saídas e interagir com o próprio usuário através do próprio terminal.
 
-Contudo, a respeito da confiabilidade, quando tentado tirar ou realocar os cabos de alguns dos nós, o sistema é interrompido, não cumprindo um dos requisitos necessários. Outrossim, a respeito do desempenho embora tenha usado threads, dicionários e filas, o objetivo central não para o autor era cumprir a funcionalidade principal, ou seja, a comunicação não atentando especificamente para uma melhora no tempo da aplicação.
+<p align="center">
+  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/4aebe0ba-ca03-4ed0-8786-54a275b164a1" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
+</p>
+
+<p align="center">
+  Imagem 7: Interface no terminal
+</p>
+
+
+Contudo, a respeito da confiabilidade, quando tentado tirar ou realocar os cabos de alguns dos nós, o sistema é interrompido, não cumprindo um dos requisitos necessários. Outrossim, a respeito do desempenho embora tenha usado threads, dicionários e filas, o objetivo central não para o autor era cumprir a funcionalidade principal, ou seja, a comunicação não atentando especificamente para uma melhora no tempo da aplicação. Por fim, o sistema dorcker não foi implementado de um maneira efetiva, ou seja, a solução funcionará rodando sem utilizar o docker
 
 ## Conclusão
 
