@@ -37,11 +37,23 @@ Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o 
 </p>
 
 <p align="center">
-  Descrição: Configuração para aceitar conexões TCP.
+  Imagem 1: Configuração para aceitar conexões TCP.
 </p>
 
 
-Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o dispositivo, rota para listagem de dispositivos e rotas para tratar com a conexão e desconexão do cliente. Sendo assim, é possível ligarmos, desligarmos e selecionarmos um dispositivo específico, além da funcionalidade de listagem dos dispositivos. Não houve a elaboração de uma interface gráfica, sendo de preferência do autor realizar as saídas e interagir com o próprio usuário através do próprio terminal.
+Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o dispositivo, rota para listagem de dispositivos e rotas para tratar com a conexão e desconexão do cliente. Sendo assim, é possível ligarmos, desligarmos e selecionarmos um dispositivo específico, além da funcionalidade de listagem dos dispositivos.
+
+<p align="center">
+  <img src="![image](https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/438b7cb4-7a36-4f90-9956-a0b964a2e863)
+" alt="Configuração para aceitar conexões TCP.">
+</p>
+
+<p align="center">
+  Imagem 2: Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.
+</p>
+
+
+Não houve a elaboração de uma interface gráfica, sendo de preferência do autor realizar as saídas e interagir com o próprio usuário através do próprio terminal.
 
 Contudo, a respeito da confiabilidade, quando tentado tirar ou realocar os cabos de alguns dos nós, o sistema é interrompido, não cumprindo um dos requisitos necessários. Outrossim, a respeito do desempenho embora tenha usado threads, dicionários e filas, o objetivo central não para o autor era cumprir a funcionalidade principal, ou seja, a comunicação não atentando especificamente para uma melhora no tempo da aplicação.
 
