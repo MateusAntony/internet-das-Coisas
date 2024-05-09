@@ -28,7 +28,7 @@ Houve a adoção de threads para lidar com a comunicação simultânea, utilizan
 
 
 <p align="center">
-  <img src="!https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/d6cde03f-dd4c-434a-bae5-c1ce03fc74c8" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
+  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/d6cde03f-dd4c-434a-bae5-c1ce03fc74c8" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
 </p>
 
 <p align="center">
@@ -52,7 +52,7 @@ Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades q
 Ao testar e finalizar a solução, foi observado que grande parte dos requisitos exigidos foram cumpridos. Houve o desenvolvimento dos componentes, onde o Broker se comunica com o Device e o Client, já o Device só se comunica com o Broker semelhantemente ao Client. 
 
 <p align="center">
-  <img src="(https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/b5d8287c-c088-4534-85df-7fb7e83f0ce1)" alt="Descrição da Imagem">
+  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/b5d8287c-c088-4534-85df-7fb7e83f0ce1" alt="Descrição da Imagem">
 </p>
 <p align="center">
   Imagem 4: Duas Thread sendo utilizadas no dispostivo, uma é para receber os comandos do broker e outra para enviar
