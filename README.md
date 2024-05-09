@@ -45,10 +45,18 @@ Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades q
 </p>
 <p align="center">
   Imagem 3: Barema avaliativo
+</p>
 
 ## Resultado e Discussões
 
 Ao testar e finalizar a solução, foi observado que grande parte dos requisitos exigidos foram cumpridos. Houve o desenvolvimento dos componentes, onde o Broker se comunica com o Device e o Client, já o Device só se comunica com o Broker semelhantemente ao Client. 
+
+<p align="center">
+  <img src="(https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/b5d8287c-c088-4534-85df-7fb7e83f0ce1)" alt="Descrição da Imagem">
+</p>
+<p align="center">
+  Imagem 4: Duas Thread sendo utilizadas no dispostivo, uma é para receber os comandos do broker e outra para enviar
+</p>
 
 Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o Device, e UDP para lidar com os dados que partem do Device e vão até o broker. A comunicação que é feita entre Broker e Client é baseada em HTTP. Foi elaborado funções para tratar os dados específicos, permitindo a compreensão das mensagens.
 
@@ -58,8 +66,17 @@ Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o 
 </p>
 
 <p align="center">
-  Imagem 4: Configuração para aceitar conexões TCP.
+  Imagem 5: Configuração para aceitar conexões TCP.
 </p>
+
+<p align="center">
+  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/9fc662d1-e6ae-40e3-93bf-f51513e4ec20" alt="Configuração para aceitar conexões TCP.">
+</p>
+
+<p align="center">
+  Imagem 6: Função responsável por tratar os comandos que o broker envia para o device.
+</p>
+
 
 
 Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o dispositivo, rota para listagem de dispositivos e rotas para tratar com a conexão e desconexão do cliente. Sendo assim, é possível ligarmos, desligarmos e selecionarmos um dispositivo específico, além da funcionalidade de listagem dos dispositivos.
@@ -69,7 +86,7 @@ Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o disp
 </p>
 
 <p align="center">
-  Imagem 5: Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatados para o cliente.
+  Imagem 7: Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatados para o cliente.
 </p>
 
 
