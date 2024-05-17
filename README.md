@@ -7,7 +7,7 @@
 
 ## Índice
 1. [Introdução](#introducao)
-2. [Metodologia](#Arquitetura-da-Solução)
+2. [Arquitetura da Solução](#Arquitetura-da-Solução)
 3. [Resultado e Discussões](#resultado-e-discussoes)
 4. [Conclusão](#conclusao)
 5. [Como Usar](#como-usar)
