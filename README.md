@@ -7,7 +7,7 @@
 
 ## Índice
 1. [Introdução](#introducao)
-2. [Metodologia](#metodologia)
+2. [Metodologia](#Arquitetura-da-Solução)
 3. [Resultado e Discussões](#resultado-e-discussoes)
 4. [Conclusão](#conclusao)
 5. [Como Usar](#como-usar)
@@ -20,33 +20,16 @@ Com a crescente atenção que o sistema de Internet das Coisas (Internet of Thin
 
 Sendo assim, o desafio por parte da nossa empresa é estabelecer uma comunicação plena entre os diversos dispositivos IoT e as suas aplicações, que necessitam dos dados oferecidos por esses dispositivos. A solução para esse problema envolve a criação de um serviço broker, dispositivos virtuais simulados, manipulação e uso de contêineres Docker, e uma Interface de Programação de Aplicação (API) no modelo arquitetural RESTful oferecida pelo broker. Assim, esse projeto propõe apresentar a solução implementando os recursos citados e evidenciando na prática tópicos de concorrência e conectividade. 
 
-## Metodologia
-<a id="metodologia"></a>
+## Arquitetura da Solução
+<a id=" Arquitetura-da-Solução"></a>
 
-Para o envio de dados por parte dos dispositivos foi utilizada uma abordagem não confiável, ou mais especificamente UDP, já para lidar com os comandos recebidos foi usado uma abordagem confiável, usando socket nativo TCP/IP, onde garante a entrega entre o broker e o dispositivo virtual.
+Para o envio de dados por parte dos dispositivos foi utilizada uma abordagem não confiável, ou seja, o dispositido envia dados UDP para o broker, já para lidar com os comandos recebidos, o broker envia para o dispositivo usando socket nativo TCP/IP como abordagem confiável, onde garante a entrega do comando entre o broker e o dispositivo virtual.
 
-Foi implementado funcionalidades de controle, como ligar, reiniciar e desligar, para interagir com o dispositivo selecionado, além da possibilidade de visualizar os dados. Foi desenvolvida uma API RESTful por meio do serviço broker. Realizamos testes funcionais e de interação que têm como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada módulo do projeto, com o propósito de prever possíveis erros e falhas do sistema. Foi feito teste das rotas da API através do Postman, que permitiu simular solicitações HTTP.
+Foi implementado funcionalidades de controle, onde o usuário tem a possibilidade de ligar, reiniciar e desligar para interagir com o dispositivo selecionado. Foi desenvolvida uma API RESTful por meio do serviço broker, utilizando o framework Flask. Foi Realizado testes funcionais e de interação que têm como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada módulo do projeto, com o propósito de prever possíveis erros e falhas do sistema. Foi feito teste das rotas da API através do Postman, que permitiu simular solicitações HTTP.
 
-Houve a adoção de threads para lidar com a comunicação simultânea, utilizando também o Lock para impedir que ocorra uma condição de corrida entre threads, ou seja, somente uma thread pode acessar um recurso compartilhado por vez. Foi manuseado o framework Flask para o desenvolvimento da API RESTful. Houve também a utilização de uma fila para conseguir armazenar os dados que eram enviados para o broker.
+Houve a adoção de threads para lidar com a comunicação simultânea, para lidar com os dados UDP no broker, para executar o servidor broker junto com APIREST e usando no arquivo do dispositivo virtual para receber os comando pelo broker e para enviar dados para o broker. Ocorreu o emprego  do Lock para impedir que ocorra uma condição de corrida entre threads, ou seja, somente uma thread pode acessar um recurso compartilhado por vez. 
 
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/c38372d7-c29f-45ab-b86f-ed453057a0e2" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
-</p>
-
-<p align="center">
-  Imagem 1: Função de utiliza o Lock para sincronização de threads.
-</p>
-
-
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/d6cde03f-dd4c-434a-bae5-c1ce03fc74c8" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
-</p>
-
-<p align="center">
-  Imagem 2: thread que é utilizada para receber dados do device.
-</p>
-
-
+Vale ressaltar que verificou-se a necessidade de implementar uma fila para lidar com os dados recebidos pelos dispositivos, armazenando em ordem de chegada, e liberando obedecendo a ordem estabelecida.
 
 Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades que deve compor o programa para o funcionamente eficiênte:
 
