@@ -7,32 +7,26 @@
 
 ## Índice
 1. [Introdução](#introducao)
-2. [Arquitetura da Solução](#Arquitetura-da-Solução)
-3. [Resultado e Discussões](#resultado-e-discussoes)
-4. [Conclusão](#conclusao)
-5. [Como Usar](#como-usar)
+2. [Barema avaliativo](#Barema-avaliativo)
+3. [Arquitetura da Solução](#Arquitetura-da-Solução)
+4. [Protocolo de comunicação entre dispositivo e Broker](#Protocolo-de-comunicação-entre-dispositivo-e-Broker)
+5. [Interface da Aplicação](#Interface-da-Aplicação)
+6. [Formatacao, envio, tratamento de dados e Tratamento de conexões simultaneas](#Formatacao,-envio,-tratamento-de-dados-e-Tratamento-de-conexões-simultaneas)
+7. [Considerações Finais](#Considerações-Finais)
+8. [Conclusão](#conclusão)
+9. [Como Usar](#como-usar)
 
+<a id="introducao"></a>
 
 ## Introdução
-<a id="introducao"></a>
 
 Com a crescente atenção que o sistema de Internet das Coisas (Internet of Things, IoT) tem recebido por parte das instituições acadêmicas e empresas, devido à variedade de áreas que podem ser alcançadas por tal tecnologia, surge a necessidade de desenvolver middlewares distribuídos e aplicá-los de forma eficiente. Nesse sentido, muitas empresas se deparam com o desafio da elaboração da comunicação entre seus dispositivos e suas diferentes aplicações.
 
 Sendo assim, o desafio por parte da nossa empresa é estabelecer uma comunicação plena entre os diversos dispositivos IoT e as suas aplicações, que necessitam dos dados oferecidos por esses dispositivos. A solução para esse problema envolve a criação de um serviço broker, dispositivos virtuais simulados, manipulação e uso de contêineres Docker, e uma Interface de Programação de Aplicação (API) no modelo arquitetural RESTful oferecida pelo broker. Assim, esse projeto propõe apresentar a solução implementando os recursos citados e evidenciando na prática tópicos de concorrência e conectividade. 
 
-## Arquitetura da Solução
-<a id=" Arquitetura-da-Solução"></a>
+<a id="Barema-avaliativo"></a>
 
-Para o envio de dados por parte dos dispositivos foi utilizada uma abordagem não confiável, ou seja, o dispositido envia dados UDP para o broker, já para lidar com os comandos recebidos, o broker envia para o dispositivo usando socket nativo TCP/IP como abordagem confiável, onde garante a entrega do comando entre o broker e o dispositivo virtual.
-
-Foi implementado funcionalidades de controle, onde o usuário tem a possibilidade de ligar, reiniciar e desligar para interagir com o dispositivo selecionado. Foi desenvolvida uma API RESTful por meio do serviço broker, utilizando o framework Flask. Foi Realizado testes funcionais e de interação que têm como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada módulo do projeto, com o propósito de prever possíveis erros e falhas do sistema. Foi feito teste das rotas da API através do Postman, que permitiu simular solicitações HTTP.
-
-Houve a adoção de threads para lidar com a comunicação simultânea, para lidar com os dados UDP no broker, para executar o servidor broker junto com APIREST e usando no arquivo do dispositivo virtual para receber os comando pelo broker e para enviar dados para o broker. Ocorreu o emprego  do Lock para impedir que ocorra uma condição de corrida entre threads, ou seja, somente uma thread pode acessar um recurso compartilhado por vez. 
-
-Vale ressaltar que verificou-se a necessidade de implementar uma fila para lidar com os dados recebidos pelos dispositivos, armazenando em ordem de chegada, e liberando obedecendo a ordem estabelecida.
-
-Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades que deve compor o programa para o funcionamente eficiênte:
-
+## Barema avaliativo
 
 <p align="center">
   <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/52a65dd7-c5fb-4660-9908-fa236a30048f" alt="Descrição da Imagem">
@@ -41,67 +35,65 @@ Ademais, logo abaixo o barema avaliativo onde contém todas as funcionalidades q
   Imagem 3: Barema avaliativo
 </p>
 
-## Resultado e Discussões
-<a id="resultado-e-discussoes"></a>
+<a id="Arquitetura-da-Solução"></a>
 
-Ao testar e finalizar a solução, foi observado que grande parte dos requisitos exigidos foram cumpridos. Houve o desenvolvimento dos componentes, onde o Broker se comunica com o Device e o Client, já o Device só se comunica com o Broker semelhantemente ao Client. 
+## Arquitetura da Solução
 
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/b5d8287c-c088-4534-85df-7fb7e83f0ce1" alt="Descrição da Imagem">
-</p>
-<p align="center">
-  Imagem 4: Duas Thread sendo utilizadas no dispostivo, uma é para receber os comandos do broker e outra para enviar
-</p>
+Foram elaborados três componentes, sendo o broker, device e client. O broker é responsável por permitir a troca de mensagens entre o cliente e o dispositivo. Já o dispositivo simula uma cerca elétrica, contendo tudo aquilo que tem relação com o disposiivo virtual, seus métodos, atributos e estado da cerca elétrica. O client é uma interface disponibilizada no terminal onde vai lidar com as entradas do cliente.
 
-Assim, foi utilizado TCP/IP para lidar com o comando que parte do Broker para o Device, e UDP para lidar com os dados que partem do Device e vão até o broker. A comunicação que é feita entre Broker e Client é baseada em HTTP. Foi elaborado funções para tratar os dados específicos, permitindo a compreensão das mensagens.
+Referente a sua comunicação,o dispositivo que se conecta ao broker,ou seja, é necessário executar o broker, logo após o dispositivo vai se conectar ao broker com uma conexão TCP. Além disso, o cliente se conecta ao broker atrevés de solitações http.
+
+A respeito da ordem de mensagens trocada, elas se baseiam de acordo com a listagem abaixo:
+
+1. Cliente envia uma requisição http para o broker;
+2. O broker recebe a requisição feita e enviar um comando específico utilizando protocolo TCP para o dispositivo;
+3. O dispositovo recebe o comando, trata e devolve os dados para o broker usando um abordagem UDP;
+4. O broker avalia o dado, formata e envia para o cliente
+
+<a id="Protocolo-de-comunicação-entre-dispositivo-e-Broker"></a>
+
+## Protocolo de comunicação entre dispositivo e Broker
+
+Foi utilizado o envio de comandos, como por exemplo: ON,OFF e RESTART para ser enviado para o dispositivo, onde ele recebe-o, muda o seu estado e envia uma confimação para o broker.
+
+Para o envio de dados por parte dos dispositivos foi utilizada uma abordagem não confiável, ou seja, o dispositido envia dados UDP para o broker, já para lidar com os comandos recebidos, o broker envia para o dispositivo usando socket nativo TCP/IP como abordagem confiável, onde garante a entrega do comando entre o broker e o dispositivo virtual.
+
+<a id="Interface-da-Aplicação"></a>
+
+## Interface da Aplicação 
+
+Foi desenvolvida uma API RESTful por meio do serviço broker, utilizando o framework Flask. Foi Realizado testes funcionais e de interação que têm como objetivo verificar e analisar as saídas da aplicação junto com o comportamento de cada módulo do projeto, com o propósito de prever possíveis erros e falhas do sistema. Também houve a realização de teste das rotas da API através do Postman, que permitiu simular solicitações HTTP.
+
+Ocorreu a utilização dos verbos POST, GET E DELETE. Houve o desenvolvimento de um total de seis rotas da API, entre elas estão as rotas que interagem diretamente com o dispositivo, rotas como de ligar, desligar e reiniciar o dispositvo virtual. Outrossim, foi elaborado a rota de listagem de dispositvo apartir do seu id, usado para exibir a lista de dispositivos cadastrados, servindo no auxilio da funcionalidade de selecionar o dispositivo especifico. 
+
+Além disso, temos a rota de conectar cliente e desconecta-lo, essa rota é responsável por lidar com id do cliente e permitir que haja a interação entre a inteface no terminal do usuário e o broker.
 
 
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/cbee7f8b-3acc-4402-90bc-6535c0d5193d" alt="Configuração para aceitar conexões TCP.">
-</p>
+<a id="Formatacao,-envio,-tratamento-de-dados-e-Tratamento-de-conexões-simultaneas"></a>
 
-<p align="center">
-  Imagem 5: Configuração para aceitar conexões TCP.
-</p>
+## Formatacao, envio, tratamento de dados e Tratamento de conexões simultaneas
+ 
 
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/9fc662d1-e6ae-40e3-93bf-f51513e4ec20" alt="Configuração para aceitar conexões TCP.">
-</p>
+Houve a adoção de threads para lidar com a comunicação simultânea lidando com os dados UDP no broker, como também para executar o servidor broker junto com APIREST. Foi usado no arquivo do dispositivo virtual para receber os comando pelo broker e para enviar dados para o broker. Ocorreu o emprego  do Lock, tanto no broker quanto no dispositivo, para impedir que ocorra uma condição de corrida entre threads, ou seja, somente uma thread pode acessar um recurso compartilhado por vez. 
 
-<p align="center">
-  Imagem 6: Função responsável por tratar os comandos que o broker envia para o device.
-</p>
+Vale ressaltar que verificou-se a necessidade de implementar uma fila para lidar com os dados recebidos pelos dispositivos, armazenando em ordem de chegada, e liberando obedecendo a ordem estabelecida. Além disso, foi utlizado o json para formatar o dados enviados para o cliente e os dados que são mostrados pelo broker. 
+ 
+<a id="Considerações-Finais"></a>
 
+## Considerações Finais
 
-
-Foi criado um total de 7 rotas, sendo rota de reiniciar, ligar e desligar o dispositivo, rota para listagem de dispositivos e rotas para tratar com a conexão e desconexão do cliente. Sendo assim, é possível ligarmos, desligarmos e selecionarmos um dispositivo específico, além da funcionalidade de listagem dos dispositivos.
-
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/438b7cb4-7a36-4f90-9956-a0b964a2e863" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
-</p>
-
-<p align="center">
-  Imagem 7: Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatados para o cliente.
-</p>
-
+Foi implementado funcionalidades de controle, onde o usuário tem a possibilidade de ligar, reiniciar e desligar para interagir com o dispositivo selecionado.
 
 Não houve a elaboração de uma interface gráfica, sendo de preferência do autor realizar as saídas e interagir com o próprio usuário através do próprio terminal.
 
-<p align="center">
-  <img src="https://github.com/MateusAntony/internet-das-Coisas/assets/68971638/4aebe0ba-ca03-4ed0-8786-54a275b164a1" alt="Método que chama a função de enviar o comando para o dispositivo e logo após enviar os dados formatadas para o cliente.">
-</p>
-
-<p align="center">
-  Imagem 7: Interface no terminal
-</p>
+Contudo, a respeito da confiabilidade, quando ao tirar ou realocar o cabo de rede de alguns dos nós, o sistema é interrompido, não cumprindo um dos requisitos necessários. Por fim, foi empregado o Docker para criar containers e imagens.
 
 
-Contudo, a respeito da confiabilidade, quando tentado tirar ou realocar os cabos de alguns dos nós, o sistema é interrompido, não cumprindo um dos requisitos necessários. Outrossim, a respeito do desempenho embora tenha usado threads, dicionários e filas, o objetivo central não para o autor era cumprir a funcionalidade principal, ou seja, a comunicação não atentando especificamente para uma melhora no tempo da aplicação. Por fim, o sistema dorcker não foi implementado de um maneira efetiva, ou seja, a solução funcionará rodando sem utilizar o docker
-
-## Conclusão
 <a id="conclusao"></a>
 
-Embora não atingindo o resultado que esperava, as abordagens relacionadas a essa problemática permitiram que saíssemos do campo teórico percebendo a importância tanto do uso de alguns protocolos, a implementação de threads, além de nos apresentar conceitos e ferramentas que nunca tínhamos trabalhado. Em suma, esse projeto foi de ampla importância para o desenvolvimento de desenvolvedores e profissionais na área.
+## Conclusão
+
+Ao testar e finalizar a solução, foi observado que grande parte dos requisitos exigidos foram cumpridos. As abordagens relacionadas a essa problemática permitiram que saíssemos do campo teórico percebendo a importância tanto do uso de alguns protocolos, a implementação de threads, além de nos apresentar conceitos e ferramentas que nunca tínhamos trabalhado a respoeito de redes. Em suma, esse projeto foi de ampla importância para o desenvolvimento de desenvolvedores e profissionais na área.
 
 ## Como Usar
 <a id="como-usar"></a>
@@ -116,11 +108,9 @@ Para utilizar este projeto, siga os seguintes passos:
 - Passo 2: Execute o device
 - Passo 3: Execute o client
 4. **Interagir com o projeto:**
-- Passo 1: Selecione um dispositivo
+- Passo 1: Selecione o dispositivo
 - Passo 2: Ligue
 - Passo 3: Desligue
-- Passo 4: Selecione outro
-- Passo 5: Repita o passo 2 e 3
 5. **Explorar outras funcionalidades:**
 - Passo 1: Desconecte o device do sistema
 - Passo 5: Desconecte o broker do sistema 
