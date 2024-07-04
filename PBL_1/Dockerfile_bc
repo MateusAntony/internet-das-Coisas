@@ -1,0 +1,19 @@
+# Use a imagem base do Python
+FROM python:3.9-slim
+
+# Defina o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copie o arquivo do Broker para o diretório de trabalho
+COPY banco_c.py banco_c.py 
+COPY banco.py banco.py
+COPY contaFisica.py contaFisica.py
+COPY contaPJ.py  contaPJ.py 
+COPY contaConjunta.py contaConjunta.py
+COPY contaBancaria.py contaBancaria.py
+# Instale o Flask
+RUN pip install flask
+RUN pip install requests
+
+# Comando para iniciar o Broker
+CMD ["python", "banco_c.py"]
